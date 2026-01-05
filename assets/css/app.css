@@ -1,0 +1,459 @@
+/* See the Tailwind configuration guide for advanced usage
+   https://tailwindcss.com/docs/configuration */
+
+@import "tailwindcss" source(none);
+@source "../css";
+@source "../js";
+@source "../../lib/supreeth_portfolio_web";
+
+/* A Tailwind plugin that makes "hero-#{ICON}" classes available.
+   The heroicons installation itself is managed by your mix.exs */
+@plugin "../vendor/heroicons";
+
+/* daisyUI Tailwind Plugin. You can update this file by fetching the latest version with:
+   curl -sLO https://github.com/saadeghi/daisyui/releases/latest/download/daisyui.js
+   Make sure to look at the daisyUI changelog: https://daisyui.com/docs/changelog/ */
+@plugin "../vendor/daisyui" {
+  themes: false;
+}
+
+/* daisyUI theme plugin. You can update this file by fetching the latest version with:
+  curl -sLO https://github.com/saadeghi/daisyui/releases/latest/download/daisyui-theme.js
+  We ship with two themes, a light one inspired on Phoenix colors and a dark one inspired
+  on Elixir colors. Build your own at: https://daisyui.com/theme-generator/ */
+@plugin "../vendor/daisyui-theme" {
+  name: "dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: "dark";
+  --color-base-100: oklch(30.33% 0.016 252.42);
+  --color-base-200: oklch(25.26% 0.014 253.1);
+  --color-base-300: oklch(20.15% 0.012 254.09);
+  --color-base-content: oklch(97.807% 0.029 256.847);
+  --color-primary: oklch(58% 0.233 277.117);
+  --color-primary-content: oklch(96% 0.018 272.314);
+  --color-secondary: oklch(58% 0.233 277.117);
+  --color-secondary-content: oklch(96% 0.018 272.314);
+  --color-accent: oklch(60% 0.25 292.717);
+  --color-accent-content: oklch(96% 0.016 293.756);
+  --color-neutral: oklch(37% 0.044 257.287);
+  --color-neutral-content: oklch(98% 0.003 247.858);
+  --color-info: oklch(58% 0.158 241.966);
+  --color-info-content: oklch(97% 0.013 236.62);
+  --color-success: oklch(60% 0.118 184.704);
+  --color-success-content: oklch(98% 0.014 180.72);
+  --color-warning: oklch(66% 0.179 58.318);
+  --color-warning-content: oklch(98% 0.022 95.277);
+  --color-error: oklch(58% 0.253 17.585);
+  --color-error-content: oklch(96% 0.015 12.422);
+  --radius-selector: 0.25rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.21875rem;
+  --size-field: 0.21875rem;
+  --border: 1.5px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@plugin "../vendor/daisyui-theme" {
+  name: "light";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: oklch(98% 0 0);
+  --color-base-200: oklch(96% 0.001 286.375);
+  --color-base-300: oklch(92% 0.004 286.32);
+  --color-base-content: oklch(21% 0.006 285.885);
+  --color-primary: oklch(70% 0.213 47.604);
+  --color-primary-content: oklch(98% 0.016 73.684);
+  --color-secondary: oklch(55% 0.027 264.364);
+  --color-secondary-content: oklch(98% 0.002 247.839);
+  --color-accent: oklch(0% 0 0);
+  --color-accent-content: oklch(100% 0 0);
+  --color-neutral: oklch(44% 0.017 285.786);
+  --color-neutral-content: oklch(98% 0 0);
+  --color-info: oklch(62% 0.214 259.815);
+  --color-info-content: oklch(97% 0.014 254.604);
+  --color-success: oklch(70% 0.14 182.503);
+  --color-success-content: oklch(98% 0.014 180.72);
+  --color-warning: oklch(66% 0.179 58.318);
+  --color-warning-content: oklch(98% 0.022 95.277);
+  --color-error: oklch(58% 0.253 17.585);
+  --color-error-content: oklch(96% 0.015 12.422);
+  --radius-selector: 0.25rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.21875rem;
+  --size-field: 0.21875rem;
+  --border: 1.5px;
+  --depth: 1;
+  --noise: 0;
+}
+
+/* Add variants based on LiveView classes */
+@custom-variant phx-click-loading (.phx-click-loading&, .phx-click-loading &);
+@custom-variant phx-submit-loading (.phx-submit-loading&, .phx-submit-loading &);
+@custom-variant phx-change-loading (.phx-change-loading&, .phx-change-loading &);
+
+/* Use the data attribute for dark mode  */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* Make LiveView wrapper divs transparent for layout */
+[data-phx-session], [data-phx-teleported-src] { display: contents }
+
+/* This file is for your main application CSS */
+
+:root {
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --nv-dark: #050511;
+  --nv-space: #0e1123;
+  --nv-panel: rgba(9, 11, 30, 0.6);
+  --nv-border: rgba(96, 110, 255, 0.25);
+  --nv-highlight: rgba(218, 76, 255, 0.5);
+  --nv-text: #eef2ff;
+  --nv-subtext: rgba(238, 242, 255, 0.7);
+  --glass-bg: var(--nv-panel);
+  --glass-border: var(--nv-border);
+  --glass-shadow: 0 25px 60px rgba(5, 5, 17, 0.75);
+}
+
+.glass-body {
+  min-height: 100vh;
+  margin: 0;
+  background: radial-gradient(circle at 10% 20%, rgba(45, 59, 255, 0.35), transparent 50%),
+    radial-gradient(circle at 80% 0%, rgba(255, 104, 196, 0.4), transparent 45%),
+    radial-gradient(circle at 50% 100%, rgba(51, 255, 208, 0.3), transparent 45%),
+    var(--nv-dark);
+  color: var(--nv-text);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.background-orbs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.background-orbs span {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.45;
+}
+
+.background-orbs span:nth-child(1) {
+  background: rgba(90, 121, 255, 0.4);
+  top: 10%;
+  left: 5%;
+}
+
+.background-orbs span:nth-child(2) {
+  background: rgba(255, 98, 177, 0.35);
+  bottom: 15%;
+  right: 8%;
+}
+
+.background-orbs span:nth-child(3) {
+  background: rgba(54, 255, 201, 0.3);
+  top: 50%;
+  left: 60%;
+}
+
+.app-shell {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 3.5rem;
+}
+
+.glass-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(18px);
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 2rem;
+}
+
+.site-header nav {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.95rem;
+}
+
+.site-header nav a {
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+.site-header nav a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.brand {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--nv-text);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.hero-card {
+  background: rgba(6, 8, 25, 0.7);
+  border-radius: 26px;
+  padding: 2.75rem;
+  border: 1px solid rgba(124, 144, 255, 0.25);
+  box-shadow: var(--glass-shadow);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.hero-card h1 {
+  font-size: clamp(2.4rem, 5vw, 3.3rem);
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.hero-card h1 span {
+  font-size: 1rem;
+  color: var(--nv-subtext);
+  margin-left: 0.35rem;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: #9b8cff;
+  margin-bottom: 0.75rem;
+}
+
+.summary {
+  color: var(--nv-subtext);
+  line-height: 1.6;
+}
+
+.hero-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero-highlight dl {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.hero-highlight dt {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.hero-highlight dd {
+  font-size: 1.05rem;
+  margin: 0.15rem 0 0;
+  font-weight: 500;
+  color: var(--nv-text);
+}
+
+.section {
+  padding: 2rem;
+  border-radius: 26px;
+  border: 1px solid rgba(150, 135, 255, 0.25);
+  background: rgba(5, 6, 20, 0.75);
+  box-shadow: var(--glass-shadow);
+}
+
+.section.two-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.section-header {
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  font-size: clamp(1.7rem, 3vw, 2.1rem);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.35rem;
+}
+
+.body-text {
+  color: var(--nv-subtext);
+  line-height: 1.7;
+}
+
+.card {
+  background: rgba(8, 10, 26, 0.7);
+  border-radius: 22px;
+  border: 1px solid rgba(130, 144, 255, 0.2);
+  padding: 1.7rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: var(--glass-shadow);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card .card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0;
+  list-style: none;
+}
+
+.pill-list li {
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(120, 144, 255, 0.3);
+  background: rgba(120, 144, 255, 0.15);
+  font-size: 0.9rem;
+  backdrop-filter: blur(10px);
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.contact-list li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 0.75rem;
+}
+
+.contact-list li span {
+  font-weight: 600;
+  color: var(--nv-text);
+}
+
+.contact-list a {
+  color: #5bcdfa;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-weight: 600;
+  padding: 0.7rem 1.6rem;
+  border: 1px solid transparent;
+  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+  backdrop-filter: blur(6px);
+}
+
+.btn.small {
+  padding: 0.5rem 1.2rem;
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, #5f5bff, #9459ff, #f857c3);
+  color: #fff;
+  box-shadow: 0 15px 40px rgba(148, 89, 255, 0.35);
+}
+
+.btn.primary:hover {
+  transform: translateY(-1px) scale(1.01);
+}
+
+.btn.ghost {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.btn.link {
+  border: none;
+  padding: 0;
+  color: #6fd8ff;
+}
+
+.site-footer {
+  margin-top: 1rem;
+  text-align: center;
+  color: var(--nv-subtext);
+  padding: 1rem 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-header nav {
+    flex-wrap: wrap;
+  }
+
+  .hero-card,
+  .section {
+    padding: 1.75rem;
+  }
+}

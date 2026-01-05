@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+    <.live_title default="Supreeth Portfolio" suffix=" - Supreeth Portfolio">
+      {assigns[:page_title]}
+    </.live_title>
+    <link phx-track-static rel="stylesheet" href={~p"/assets/css/app.css"} />
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/js/app.js"}>
+    </script>
+  </head>
+  <body class="glass-body text-base-content">
+    <div class="background-orbs" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="app-shell glass-container">
+      <header class="site-header glass-panel">
+        <a class="brand" href="#top">Supreeth</a>
+        <nav aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#education">Education</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <a class="btn primary small" href="#contact">Say Hello</a>
+      </header>
+
+      <main id="main-content" role="main" class="glass-panel">
+        {@inner_content}
+      </main>
+
+      <footer class="site-footer glass-panel">
+        <p>Copyright {Date.utc_today().year} Supreeth. Crafted with Phoenix LiveView.</p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,103 @@
+<div class="page">
+  <section class="hero-card" id="top">
+    <div>
+      <p class="eyebrow">Portfolio</p>
+      <h1>
+        {@hero.name}
+        <span>({@hero.age})</span>
+      </h1>
+      <p class="tagline">{@hero.title}</p>
+      <p class="summary">{@hero.summary}</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#projects">View Projects</a>
+        <a class="btn ghost" href="#contact">Let's Talk</a>
+      </div>
+    </div>
+    <div class="hero-highlight">
+      <dl>
+        <div>
+          <dt>Experience Focus</dt>
+          <dd>Elixir | Phoenix | LiveView</dd>
+        </div>
+        <div>
+          <dt>Mindset</dt>
+          <dd>Reliable systems with thoughtful UI</dd>
+        </div>
+        <div>
+          <dt>Currently</dt>
+          <dd>Building polished Phoenix experiences</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="section-header">
+      <p class="eyebrow">About Me</p>
+      <h2>Crafting calm, useful software</h2>
+    </div>
+    <p class="body-text">
+      {@about}
+    </p>
+  </section>
+
+  <section class="section two-col" id="education">
+    <article class="card">
+      <p class="eyebrow">Education</p>
+      <h3>{@education.degree}</h3>
+      <p class="meta">{@education.institution}</p>
+      <p class="meta">Class of {@education.year}</p>
+    </article>
+
+    <article class="card" id="skills">
+      <p class="eyebrow">Skills</p>
+      <h3>Tools I use every day</h3>
+      <ul class="pill-list">
+        <%= for skill <- @skills do %>
+          <li>{skill}</li>
+        <% end %>
+      </ul>
+    </article>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="section-header">
+      <p class="eyebrow">Projects</p>
+      <h2>Selected work</h2>
+    </div>
+    <div class="card-grid">
+      <%= for project <- @projects do %>
+        <article class="card project-card">
+          <div class="card-header">
+            <h3>{project.name}</h3>
+            <span class="meta">{Enum.join(project.stack, " | ")}</span>
+          </div>
+          <p class="body-text">{project.description}</p>
+          <a class="btn link" href={project.link} target="_blank" rel="noopener noreferrer">
+            Explore project ->
+          </a>
+        </article>
+      <% end %>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <div class="section-header">
+      <p class="eyebrow">Contact Me</p>
+      <h2>Need a Phoenix developer?</h2>
+    </div>
+    <p class="body-text">
+      Reach out for freelance projects, full-time roles, or to chat about Phoenix and Elixir best practices.
+    </p>
+    <ul class="contact-list">
+      <%= for link <- @contact_links do %>
+        <li>
+          <span>{link.label}</span>
+          <a href={link.url} target="_blank" rel="noopener noreferrer">
+            {link.value}
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+</div>
